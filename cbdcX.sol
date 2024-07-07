@@ -14,7 +14,7 @@ contract CentralBankDigitalCoin is ERC20, ERC20Burnable, Pausable, AccessControl
     // Interest rate in basis points (0.01% increments)
     uint256 public interestRateBasisPoints = 500; // 5% expressed in basis points
 
-    // Blacklisted addresses
+    // Blacklisted addresses//
     mapping(address => bool) private _blacklist;
 
     // Events
