@@ -1,6 +1,6 @@
-#Central Bank Digital Coin (CBDC)
+# Central Bank Digital Coin (CBDC)
 
-##Overview
+## Overview
 This smart contract implements a Central Bank Digital Coin (CBDC) with the following key features:
 
 - ERC20 Token Standard: The token follows the ERC20 standard, with additional burn and pause functionalities.
