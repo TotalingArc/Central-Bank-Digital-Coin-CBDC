@@ -1,0 +1,15 @@
+{
+  "name": "central-bank-digital-coin",
+  "version": "1.0.0",
+  "description": "A central bank digital coin (CBDC) with staking and blacklist functionality",
+  "scripts": {
+    "test": "hardhat test",
+    "compile": "hardhat compile"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.0"
+  },
+  "devDependencies": {
+    "hardhat": "^2.12.0"
+  }
+}
