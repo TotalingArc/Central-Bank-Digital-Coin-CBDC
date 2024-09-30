@@ -30,7 +30,7 @@ Make sure you have the following installed on your machine:
 Clone this repository:
 
 ```bash
-git clone https://github.com/yourusername/cbdc-smart-contract.git
+git clone https://github.com/TotalingArc/cbdc-smart-contract.git
 cd cbdc-smart-contract
 ```
 
