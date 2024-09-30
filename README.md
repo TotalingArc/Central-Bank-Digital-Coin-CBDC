@@ -16,3 +16,31 @@ This smart contract implements a Central Bank Digital Coin (CBDC) with the follo
 - Staking and Rewards: Users can stake their tokens as treasury bonds and claim rewards based on the time staked.
 - Pause/Unpause Functionality: Admins can pause or unpause the contract, freezing token transfers when paused.
 - Burnable Token: Tokens can be burned to reduce the total supply.
+
+
+# Getting Started
+## Prerequisites
+Make sure you have the following installed on your machine:
+
+- Node.js (>=16.0.0)
+- npm (Node Package Manager)
+- Hardhat (for smart contract development and testing)
+
+## Installation
+Clone this repository:
+
+```bash
+git clone https://github.com/yourusername/cbdc-smart-contract.git
+cd cbdc-smart-contract
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+## Compile the smart contract:
+
+``` bash
+npx hardhat compile
+```
