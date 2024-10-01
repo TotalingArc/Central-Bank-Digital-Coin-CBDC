@@ -57,8 +57,17 @@ npx hardhat run scripts/deploy.js --network <network_name>
 
 Make sure to replace <network_name> with the actual network you're deploying to (e.g., sepolia, mainnet, localhost).
 
-## Testing
-The project comes with a set of unit tests to ensure the contract behaves as expected. You can run the tests with the following command:
+# Testing
+The project comes with a set of unit tests to ensure the contract behaves as expected. 
+
+## Install Testing Libraries
+Before writing the tests, ensure that you have installed the necessary testing libraries:
+
+```bash
+npm install --save-dev chai @nomiclabs/hardhat-ethers ethers
+```
+
+## Run test
 
 ```bash
 npx hardhat test
