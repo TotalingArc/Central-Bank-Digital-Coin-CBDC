@@ -44,3 +44,15 @@ npm install
 ``` bash
 npx hardhat compile
 ```
+## Deploying the Contract
+To deploy the smart contract on your chosen network, use the following command:
+
+Update the network configuration and deployment script in scripts/deploy.js.
+
+## Deploy the contract:
+
+```bash
+npx hardhat run scripts/deploy.js --network <network_name>
+```
+
+Make sure to replace <network_name> with the actual network you're deploying to (e.g., sepolia, mainnet, localhost).
