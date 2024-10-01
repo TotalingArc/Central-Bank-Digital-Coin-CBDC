@@ -61,7 +61,7 @@ Make sure to replace <network_name> with the actual network you're deploying to 
 The project comes with a set of unit tests to ensure the contract behaves as expected. 
 
 ## Install Testing Libraries
-Before writing the tests, ensure that you have installed the necessary testing libraries:
+Before running the tests, ensure that you have installed the necessary testing libraries:
 
 ```bash
 npm install --save-dev chai @nomiclabs/hardhat-ethers ethers
