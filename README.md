@@ -56,3 +56,11 @@ npx hardhat run scripts/deploy.js --network <network_name>
 ```
 
 Make sure to replace <network_name> with the actual network you're deploying to (e.g., sepolia, mainnet, localhost).
+
+## Testing
+The project comes with a set of unit tests to ensure the contract behaves as expected. You can run the tests with the following command:
+
+```bash
+npx hardhat test
+```
+
