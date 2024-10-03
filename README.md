@@ -25,6 +25,7 @@ Make sure you have the following installed on your machine:
 - Node.js (>=16.0.0)
 - npm (Node Package Manager)
 - Hardhat (for smart contract development and testing)
+- Ethers or Web3 (for interacting with smart contract)
 
 ## Installation
 Clone this repository:
