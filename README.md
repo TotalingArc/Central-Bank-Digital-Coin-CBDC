@@ -39,6 +39,20 @@ Install dependencies:
 ```bash
 npm install
 ```
+## Ethers.js or Web3.js (for Interacting with Contracts)
+If you need to interact with the smart contract through JavaScript, you can use either Ethers.js or Web3.js.
+
+Ethers.js (works well with Hardhat):
+
+```bash
+npm install ethers
+```
+Web3.js (if you prefer it):
+
+```bash
+npm install web3
+```
+
 ## Compile the smart contract:
 
 ``` bash
