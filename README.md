@@ -40,6 +40,22 @@ Install dependencies:
 ```bash
 npm install
 ```
+## OpenZeppelin Contracts
+Your contract uses several OpenZeppelin libraries for token standards, access control, and security mechanisms like pausing and burnability. These need to be installed in your project.
+
+Install OpenZeppelin Contracts:
+
+```bash
+npm install @openzeppelin/contracts
+```
+## Specific OpenZeppelin contracts used:
+
+'ERC20:' For the standard ERC-20 token implementation.
+ERC20Burnable: Adds burn functionality to the token.
+Pausable: Allows the contract to be paused by an admin.
+AccessControl: Provides role-based access control functionality.
+ReentrancyGuard: Prevents reentrancy attacks.
+
 ## Ethers.js or Web3.js (for Interacting with Contracts)
 If you need to interact with the smart contract through JavaScript, you can use either Ethers.js or Web3.js.
 
