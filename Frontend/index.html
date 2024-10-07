@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBDC DApp</title>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.5.4/dist/ethers.umd.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            margin-bottom: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>Central Bank Digital Coin (CBDC) DApp</h1>
+    
+    <div class="container">
+        <button id="connectWalletButton" class="button">Connect Wallet</button>
+        <p id="walletAddress"></p>
+    </div>
+    
+    <div class="container">
+        <h3>Your CBDC Balance</h3>
+        <p id="balance">Not connected</p>
+    </div>
+
+    <div class="container">
+        <h3>Mint Tokens (Governance Only)</h3>
+        <input type="number" id="mintAmount" placeholder="Amount to mint">
+        <button id="mintButton" class="button">Mint Tokens</button>
+    </div>
+
+    <div class="container">
+        <h3>Stake Treasury Bonds</h3>
+        <input type="number" id="stakeAmount" placeholder="Amount to stake">
+        <button id="stakeButton" class="button">Stake</button>
+    </div>
+
+    <div class="container">
+        <h3>Unstake Treasury Bonds</h3>
+        <input type="number" id="unstakeAmount" placeholder="Amount to unstake">
+        <button id="unstakeButton" class="button">Unstake</button>
+    </div>
+
+    <div class="container">
+        <h3>Claim Treasury Bond Rewards</h3>
+        <button id="claimRewardsButton" class="button">Claim Rewards</button>
+    </div>
+
+    <div class="container">
+        <h3>Update Interest Rate (Governance Only)</h3>
+        <input type="number" id="interestRate" placeholder="New interest rate (basis points)">
+        <button id="updateInterestRateButton" class="button">Update Interest Rate</button>
+    </div>
+
+    <div class="container">
+        <h3>Update Blacklist (Admin Only)</h3>
+        <input type="text" id="blacklistAddress" placeholder="Address to blacklist/unblacklist">
+        <button id="updateBlacklistButton" class="button">Update Blacklist</button>
+    </div>
+
+    <script>
+        const contractABI = [/* Insert your contract ABI here */];
+        const contractAddress = "YOUR_CONTRACT_ADDRESS"; // Replace with your contract address
+        let signer;
+        let contract;
+
+        // Connect wallet and setup contract
+        document.getElementById("connectWalletButton").addEventListener("click", async () => {
+            if (typeof window.ethereum !== "undefined") {
+                const provider = new ethers.providers.Web3Provider(window.ethereum);
+                await provider.send("eth_requestAccounts", []);
+                signer = provider.getSigner();
+                document.getElementById("walletAddress").innerText = `Wallet connected: ${await signer.getAddress()}`;
+
+                contract = new ethers.Contract(contractAddress, contractABI, signer);
+                getBalance();
+            } else {
+                alert("Please install MetaMask!");
+            }
+        });
+
+        // Get balance
+        async function getBalance() {
+            const account = await signer.getAddress();
+            const balance = await contract.balanceOf(account);
+            document.getElementById("balance").innerText = `${ethers.utils.formatUnits(balance, 18)} CBDC`;
+        }
+
+        // Mint tokens
+        document.getElementById("mintButton").addEventListener("click", async () => {
+            const amount = document.getElementById("mintAmount").value;
+            try {
+                const tx = await contract.increaseMoneySupply(ethers.utils.parseUnits(amount, 18));
+                await tx.wait();
+                alert(`${amount} CBDC minted`);
+                getBalance();
+            } catch (error) {
+                console.error("Minting error:", error);
+            }
+        });
+
+        // Stake tokens
+        document.getElementById("stakeButton").addEventListener("click", async () => {
+            const amount = document.getElementById("stakeAmount").value;
+            try {
+                const tx = await contract.stakeTreasuryBonds(ethers.utils.parseUnits(amount, 18));
+                await tx.wait();
+                alert(`${amount} CBDC staked`);
+            } catch (error) {
+                console.error("Staking error:", error);
+            }
+        });
+
+        // Unstake tokens
+        document.getElementById("unstakeButton").addEventListener("click", async () => {
+            const amount = document.getElementById("unstakeAmount").value;
+            try {
+                const tx = await contract.unstakeTreasuryBonds(ethers.utils.parseUnits(amount, 18));
+                await tx.wait();
+                alert(`${amount} CBDC unstaked`);
+            } catch (error) {
+                console.error("Unstaking error:", error);
+            }
+        });
+
+        // Claim rewards
+        document.getElementById("claimRewardsButton").addEventListener("click", async () => {
+            try {
+                const tx = await contract.claimTreasuryBonds();
+                await tx.wait();
+                alert("Rewards claimed!");
+                getBalance();
+            } catch (error) {
+                console.error("Claiming rewards error:", error);
+            }
+        });
+
+        // Update interest rate
+        document.getElementById("updateInterestRateButton").addEventListener("click", async () => {
+            const newRate = document.getElementById("interestRate").value;
+            try {
+                const tx = await contract.updateInterestRate(newRate);
+                await tx.wait();
+                alert(`Interest rate updated to ${newRate} basis points`);
+            } catch (error) {
+                console.error("Update interest rate error:", error);
+            }
+        });
+
+        // Update blacklist
+        document.getElementById("updateBlacklistButton").addEventListener("click", async () => {
+            const address = document.getElementById("blacklistAddress").value;
+            const isBlacklisted = confirm("Do you want to blacklist this address?");
+            try {
+                const tx = await contract.updateBlacklist(address, isBlacklisted);
+                await tx.wait();
+                alert(`${address} is now ${isBlacklisted ? 'blacklisted' : 'unblacklisted'}`);
+            } catch (error) {
+                console.error("Blacklist error:", error);
+            }
+        });
+    </script>
+</body>
+</html>
