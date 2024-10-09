@@ -36,7 +36,7 @@ git clone https://github.com/TotalingArc/cbdc-smart-contract.git
 cd cbdc-smart-contract
 ```
 
-Install dependencies:
+## Install dependencies:
 
 ```bash
 npm install
