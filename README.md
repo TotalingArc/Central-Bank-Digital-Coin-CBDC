@@ -44,7 +44,7 @@ npm install
 ## OpenZeppelin Contracts
 Your contract uses several OpenZeppelin libraries for token standards, access control, and security mechanisms like pausing and burnability. These need to be installed in your project.
 
-Install OpenZeppelin Contracts:
+## Install OpenZeppelin Contracts:
 
 ```bash
 npm install @openzeppelin/contracts
