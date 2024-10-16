@@ -11,3 +11,17 @@ npm install --save-dev @nomicfoundation/hardhat-chai-matchers ethereum-waffle ch
 ```bash
 npm install --save-dev hardhat @openzeppelin/contracts
 ```
+
+## Running the Tests:
+
+### Compile the contracts:
+
+```bash
+npx hardhat compile
+```
+
+## Run the tests:
+
+```bash
+npx hardhat test
+```
